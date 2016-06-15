@@ -10,7 +10,7 @@ Author URI: https://github.com/aminbd07
 
 //File Image url filter for project Manager
 
-function wppm_image_thumb_url( $url, $project_id, $file_id ) {
+function cpm_attachment_thum_url_customize( $url, $project_id, $file_id ) {
     $file = get_post( $file_id );
     if ( $file ) {
         if ( wp_attachment_is_image( $file_id ) ) {
@@ -20,16 +20,16 @@ function wppm_image_thumb_url( $url, $project_id, $file_id ) {
             $url = wp_mime_type_icon( $file->post_mime_type );
         }
     }
-    echo $url ; 
+    
     return $url;
 }
-add_filter( 'image_thum_url', 'wppm_image_thumb_url', 1, 3 );
+add_filter( 'cpm_attachment_url_thum', 'cpm_attachment_thum_url_customize', 1, 3 );
 
-function wppm_image_file_url( $url, $project_id, $file_id ) {
+function cpm_attachment_url_customize( $url, $project_id, $file_id ) {
     $url = wp_get_attachment_url( $file_id );
     return $url;
 }
-add_filter( 'image_file_url', 'wppm_image_file_url', 1, 3 );
+add_filter( 'cpm_attachment_url', 'cpm_attachment_url_customize', 1, 3 );
 
 
 ?>
